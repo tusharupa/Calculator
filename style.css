@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+
+#calc{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 600px;
+    height: 600px;
+    border: solid 1px black;
+    gap: 10px;
+    margin: 8px 8px;
+    
+}
+.display{
+    height: 50px;
+    border: solid 1px black;
+    margin: 8px 4px;
+    
+}
+.buttons{
+    display: flex;
+    margin: 8px;
+    padding: 8px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+button{
+    padding: 8px;
+    width: 50px;
+}
