@@ -2,31 +2,79 @@
     box-sizing: border-box;
 }
 
+body{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color:#1c1720;
+}
 #calc{
     display: flex;
     flex-direction: column;
     align-content: center;
-    width: 600px;
-    height: 600px;
-    border: solid 1px black;
+    width: 390px;
+    border: solid 6px rgb(255, 255, 255);
     gap: 10px;
-    margin: 8px 8px;
+    margin-top: 3em;
+    background-color: #040f13;
+    border-radius: 4%;
     
 }
 .display{
-    height: 50px;
-    border: solid 1px black;
-    margin: 8px 4px;
+   display: flex;
+   height: 80px;
+    border: solid 4px rgb(255, 255, 255);
+    margin:10px;
+    color: white;
+    align-items: center;
+    padding: 4px;
+    width: 350px;
+    align-self: center;
+    background-color: rgb(18, 18, 51);
+    flex-direction: column;
+}
+.upperDisplay{
+    display: flex;
+    width: 330px;
+    height: 30px;
     
+    font-size: 16px;
+    justify-content: flex-end;
+
+}
+.lowerDisplay{
+    font-size: 28px;
+    display: flex;
+    width: 330px;
+    height: 40px;
+    justify-content: flex-end;
+    font-weight: 600;
 }
 .buttons{
     display: flex;
-    margin: 8px;
+    margin:5px;
     padding: 8px;
     gap: 8px;
-    flex-wrap: wrap;
+   flex-wrap: wrap;
+   justify-content: center;
+    
 }
 button{
     padding: 8px;
-    width: 50px;
+    width: 80px;
+    height: 50px;
+    font-size: 26px;
+    background-color: rgb(27, 27, 43);
+    color: aliceblue;
+    cursor: pointer;
+    border-radius: 10%;
+}
+.equal{
+    width:110px ;
+}
+.clear{
+    width: 110px;
+}
+.delete{
+    width: 108px;
 }

@@ -1,28 +1,48 @@
-const display=document.querySelector('.display');
+
 const operators=document.querySelectorAll('.operator');
 const numbers=document.querySelectorAll('.number');
 const del=document.querySelector('.delete');
 const clear=document.querySelector('.clear');
 const equals=document.querySelector('.equal');
+const upperDisplay=document.querySelector('.upperDisplay');
+const lowerDisplay=document.querySelector('.lowerDisplay');
+
 let previousOperand="",currentOperand="";
-let operation ="";
-function appendNumber(number){
+let operation =undefined;
+
+function updateDisplay()
+{
     
+    if(operation != null){
+        upperDisplay.innerText=`${previousOperand} ${operation}`
+    }
+    else
+    upperDisplay.innerText="";
+}
+function appendNumber(number){
+        if(number==='.' && currentOperand.includes('.') ) return;
+        if(currentOperand.length > 10)
+        return;
         currentOperand=currentOperand.toString() + number.toString(); 
-        display.textContent=currentOperand;                
+        lowerDisplay.textContent=currentOperand;
+        updateDisplay();              
     
 }
 
 function clearDisplay()
 {
-    display.textContent="";
+    lowerDisplay.textContent="";
+    upperDisplay.textContent="";
     previousOperand="";
     currentOperand="";
-    operation="";
+    operation=undefined;
 }
 
 numbers.forEach(button => {
-    button.addEventListener('click',()=>appendNumber(button.innerText));
+    button.addEventListener('click',()=>{
+        appendNumber(button.innerText);
+    updateDisplay();
+});
 });
 
 clear.addEventListener('click',clearDisplay);
@@ -30,7 +50,7 @@ clear.addEventListener('click',clearDisplay);
 operators.forEach(operator =>{
     operator.addEventListener('click',()=>{
 
-        if(currentOperand ==="")
+        if(currentOperand ==="")               
         return;
         if(previousOperand !=="")
         compute(operation);
@@ -38,14 +58,16 @@ operators.forEach(operator =>{
             operation=operator.innerText;
             previousOperand=currentOperand;
             currentOperand="";
+
+        updateDisplay();
  
     });
 });
 function compute(operator)
 {
     let computation;
-    const prev = parseInt(previousOperand);
-    const curr =parseInt(currentOperand);
+    const prev = parseFloat(previousOperand); 
+    const curr = parseFloat(currentOperand);
     if(isNaN(prev) || isNaN(curr))         //return when there is no previous and current 
     return;                                   //values
     switch(operator)
@@ -57,24 +79,32 @@ function compute(operator)
              computation = prev-curr;
              break;
          case 'X':
+             
              computation=prev*curr;
              break;
          case '/':
+            if(curr===0)
+            {
+               alert("you can't divide by 0");
+               return;
+            }
              computation=prev/curr;
              break;
          default:
              return;
     }
     currentOperand=computation;
-    operation="";
+    operation=undefined;
     previousOperand="";
-    display.textContent=currentOperand;
+    lowerDisplay.textContent=currentOperand;
+    updateDisplay();
     
 }
 equals.addEventListener('click',()=>{
-    compute(operation);
+    compute(operation); 
 });
 del.addEventListener('click',()=>{
     currentOperand=currentOperand.toString().slice(0,-1);
-    display.textContent= currentOperand;
+    lowerDisplay.textContent= currentOperand;
+    updateDisplay();
 })
